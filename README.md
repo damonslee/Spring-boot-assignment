@@ -19,7 +19,7 @@
 
 
 ## 개발환경
-- Spring boot 2.1.12
-- Mysql 8.0.16
-- Gradle 5.6.4
+* Spring boot 2.1.12
+* Mysql 8.0.16
+* Gradle 5.6.4
 
