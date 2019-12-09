@@ -1,0 +1,23 @@
+server:
+  port: 5000
+
+spring:
+  datasource:
+    username: root
+    password: bb2848
+    url: jdbc:mysql://localhost:3306/Taco?characterEncoding=UTF-8&serverTimezone=Asia/Seoul&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+#  http:
+#    multipart:
+#      enabled: false
+  main:
+    allow-bean-definition-overriding: true
+
+
+
+
