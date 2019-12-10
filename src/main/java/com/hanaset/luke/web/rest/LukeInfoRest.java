@@ -26,4 +26,15 @@ public class LukeInfoRest extends LukeApiRestSupport {
     public ResponseEntity getEveryYearInfo() {
         return response(lukeInfoService.getEveryYearInfo(), "name", "주택금융 공급현황");
     }
+
+    @GetMapping("/maximum_amount_year")
+    public ResponseEntity getMaximumAmountYear() {
+        return ResponseEntity.ok(lukeInfoService.getMaximumAmountYear());
+    }
+
+    @GetMapping("/history_max_min")
+    public ResponseEntity getMaxMinInfo() {
+        String bank = "외환은행";
+        return response(lukeInfoService.getExchangeBankInfo(bank, 2005L, 2016L), "bank", bank);
+    }
 }

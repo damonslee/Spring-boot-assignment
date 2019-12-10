@@ -14,8 +14,6 @@ import java.time.ZonedDateTime;
 @Data
 @Builder
 @Entity
-@DynamicInsert
-@DynamicUpdate
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "TB_BANK_HISTORY")
@@ -29,9 +27,8 @@ public class BankHistoryEntity {
 
     private Long month;
 
-    @ManyToOne
-    @JoinColumn(name = "bank_code")
-    private BankEntity bankCode;
+    @Column(name = "bank_code")
+    private String bankCode;
 
     private Long price;
 

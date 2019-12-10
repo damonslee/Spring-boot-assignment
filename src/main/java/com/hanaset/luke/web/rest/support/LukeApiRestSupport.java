@@ -20,7 +20,7 @@ public abstract class LukeApiRestSupport {
         return ResponseEntity.ok(
                 ImmutableMap.of(
                         key, value,
-                        "data", data != null ? data : new JSONObject()
+                        "support_amount", data != null ? data : new JSONObject()
                 )
         );
     }

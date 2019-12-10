@@ -35,4 +35,13 @@ public class LukeInfoServiceTest {
         System.out.println(lukeInfoService.getEveryYearInfo());
     }
 
+    @Test
+    public void InfoServiceGetMaxiumAmountYearTest() {
+        System.out.println(lukeInfoService.getMaximumAmountYear());
+    }
+
+    @Test
+    public void InfoServiceGetExchangeBankTest() {
+        System.out.println(lukeInfoService.getExchangeBankInfo("외환은행", 2005L, 2016L));
+    }
 }

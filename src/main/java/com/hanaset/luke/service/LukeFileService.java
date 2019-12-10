@@ -72,7 +72,7 @@ public class LukeFileService {
                     bankHistoryEntityList.add(BankHistoryEntity.builder()
                             .year(Long.parseLong(row[0]))
                             .month(Long.parseLong(row[1]))
-                            .bankCode(BankEntity.builder().instituteCode(bankInfos.get(i-2).getCode()).build())
+                            .bankCode(bankInfos.get(i-2).getCode())
                             .price(Long.parseLong(row[i].replaceAll("[^0-9]", "")))
                             .build());
                 }

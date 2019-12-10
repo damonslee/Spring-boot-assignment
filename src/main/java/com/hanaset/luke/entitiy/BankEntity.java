@@ -14,8 +14,6 @@ import java.time.ZonedDateTime;
 @Data
 @Builder
 @Entity
-@DynamicInsert
-@DynamicUpdate
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "TB_BANK")
