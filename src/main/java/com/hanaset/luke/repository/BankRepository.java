@@ -4,10 +4,12 @@ import com.hanaset.luke.entitiy.BankEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Optional;
+
 @Repository
 public interface BankRepository extends JpaRepository<BankEntity, String> {
 
-    BankEntity findByInstituteCode(String code);
+    Optional<BankEntity> findByInstituteCode(String code);
 
-    BankEntity findByInstituteName(String name);
+    Optional<BankEntity> findByInstituteName(String name);
 }

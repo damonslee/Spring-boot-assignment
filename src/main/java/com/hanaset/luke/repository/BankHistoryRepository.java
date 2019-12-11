@@ -1,6 +1,5 @@
 package com.hanaset.luke.repository;
 
-import com.hanaset.luke.entitiy.BankEntity;
 import com.hanaset.luke.entitiy.BankHistoryEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,4 +16,6 @@ public interface BankHistoryRepository extends JpaRepository<BankHistoryEntity, 
     List<BankHistoryEntity> findByYearOrderByMonth(Long year);
 
     List<BankHistoryEntity> findByBankCodeAndYearBetween(String bankCode, Long start, Long end);
+
+    List<BankHistoryEntity> findByBankCodeOrderByYearAscMonthAsc(String bankCode);
 }

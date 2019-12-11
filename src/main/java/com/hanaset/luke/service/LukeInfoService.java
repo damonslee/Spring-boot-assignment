@@ -10,6 +10,8 @@ import com.hanaset.luke.model.Response.YearInfo;
 import com.hanaset.luke.model.Response.YearMaxInfo;
 import com.hanaset.luke.repository.BankHistoryRepository;
 import com.hanaset.luke.repository.BankRepository;
+import com.hanaset.luke.web.rest.exception.ErrorCode;
+import com.hanaset.luke.web.rest.exception.LukeApiRestException;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -86,7 +88,7 @@ public class LukeInfoService {
 
     public List<SupportAmount> getExchangeBankInfo(String bank, Long start, Long end) {
 
-        BankEntity bankEntity = bankRepository.findByInstituteName(bank);
+        BankEntity bankEntity = bankRepository.findByInstituteName(bank).orElseThrow(() -> new LukeApiRestException(ErrorCode.BANK_NOT_FOUND, "입력하신 은행이 존재하지 않습니다."));
         List<BankHistoryEntity> bankHistoryEntities = bankHistoryRepository.findByBankCodeAndYearBetween(bankEntity.getInstituteCode(), start, end);
         Map<Long ,Long> amountMap = Maps.newHashMap();
 
