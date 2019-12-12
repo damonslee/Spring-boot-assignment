@@ -22,6 +22,7 @@ public class JwtService {
 
         Date expireTime = new Date();
         expireTime.setTime(expireTime.getTime() + (60 * 60 * 1000));
+        ZonedDateTime zonedDateTime = ZonedDateTime.ofInstant(expireTime.toInstant(), ZoneId.of("Asia/Seoul"));
         String jwt = Jwts.builder()
                 .setHeaderParam("typ", "JWT")
                 .setHeaderParam("regDate", System.currentTimeMillis())
@@ -30,7 +31,12 @@ public class JwtService {
                 .claim(key, data)
                 .signWith(SignatureAlgorithm.HS256, generateKey())
                 .compact();
-        return JwtToken.builder().token(jwt).expireTime(ZonedDateTime.ofInstant(expireTime.toInstant(), ZoneId.of("Asia/Seoul"))).build();
+
+        return JwtToken.builder()
+                .token(jwt)
+                .expiredTime(zonedDateTime)
+                .expiredString(zonedDateTime.toString())
+                .build();
     }
 
     private byte[] generateKey() {

@@ -10,6 +10,7 @@ import com.hanaset.luke.web.rest.exception.LukeApiRestException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
 import java.util.regex.Pattern;
 
 @Slf4j
@@ -76,8 +77,10 @@ public class LukeAuthService {
 
     public JwtToken userSignIn(SignRequest request) {
 
-        userRepository.findByUserIdAndPassword(request.getId(), SecurityUtil.sha256(request.getPassword())).orElseThrow(() -> new LukeApiRestException(ErrorCode.SIGN_IN_FAILED, "ID 또는 Password가 일치하지 않습니다."));
-
+        UserEntity entity = userRepository.findByUserIdAndPassword(request.getId(), SecurityUtil.sha256(request.getPassword())).orElseThrow(() -> new LukeApiRestException(ErrorCode.SIGN_IN_FAILED, "ID 또는 Password가 일치하지 않습니다."));
+        entity.setLastLogin(ZonedDateTime.now());
+        entity.setUpdDtime(ZonedDateTime.now());
+        userRepository.save(entity);
         return jwtService.create("user_id", request.getId(), "token");
     }
 

@@ -1,5 +1,6 @@
 package com.hanaset.luke.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
 
@@ -11,5 +12,9 @@ public class JwtToken {
 
     private String token;
 
-    private ZonedDateTime expireTime;
+    @JsonProperty("expired_time")
+    private ZonedDateTime expiredTime;
+
+    @JsonProperty("expired_string")
+    private String expiredString;
 }
