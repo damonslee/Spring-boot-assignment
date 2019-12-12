@@ -1,4 +1,4 @@
-package com.hanaset.luke.model.Response;
+package com.hanaset.luke.model.response;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Builder;

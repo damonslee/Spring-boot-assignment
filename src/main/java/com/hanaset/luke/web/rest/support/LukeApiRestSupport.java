@@ -29,8 +29,7 @@ public abstract class LukeApiRestSupport {
         return new ResponseEntity<>(
                 ImmutableMap.of(
                         "code", code,
-                        "msg", msg,
-                        "data", "{}"
+                        "msg", msg
                 ), HttpStatus.BAD_REQUEST
         );
     }

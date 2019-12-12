@@ -37,6 +37,7 @@ dependencies {
     compile group: 'org.apache.clerezza.ext', name: 'org.json.simple', version: '0.4' // JSONObject
     compile 'com.google.code.gson:gson:2.6.2' // gson
     compile group: 'com.opencsv', name: 'opencsv', version: '5.0' // open csv
+    compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1' // JWT Token
 
     //JX java
     implementation "io.reactivex.rxjava2:rxjava:2.2.0"

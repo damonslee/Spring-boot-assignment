@@ -3,7 +3,7 @@ package com.hanaset.luke.service;
 import com.google.common.collect.Lists;
 import com.hanaset.luke.entitiy.BankHistoryEntity;
 import com.hanaset.luke.model.PredictionInfo;
-import com.hanaset.luke.model.Response.PredictionResponse;
+import com.hanaset.luke.model.response.PredictionResponse;
 import com.hanaset.luke.repository.BankHistoryRepository;
 import com.hanaset.luke.repository.BankRepository;
 import com.hanaset.luke.web.rest.exception.ErrorCode;
@@ -33,6 +33,10 @@ public class LukePredictionService {
                 .orElseThrow(() -> new LukeApiRestException(ErrorCode.BANK_NOT_FOUND, "입력하신 은행이 존재하지 않습니다."))
                 .getInstituteCode();
         List<BankHistoryEntity> entityList = bankHistoryRepository.findByBankCodeOrderByYearAscMonthAsc(bankCode);
+
+        if(month < 1 || month > 12) {
+            throw new LukeApiRestException(ErrorCode.REQUEST_ERROR, "요청하신 데이터는 비정상적인 요청입니다.");
+        }
 
         List<PredictionInfo> predictionInfos = Lists.newArrayList();
         Long avgInc = 0L;

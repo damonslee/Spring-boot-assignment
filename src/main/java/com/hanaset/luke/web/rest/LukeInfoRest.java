@@ -1,13 +1,11 @@
 package com.hanaset.luke.web.rest;
 
+import com.hanaset.luke.model.request.PredictionRequest;
 import com.hanaset.luke.service.LukeInfoService;
 import com.hanaset.luke.service.LukePredictionService;
 import com.hanaset.luke.web.rest.support.LukeApiRestSupport;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RequestMapping("/info")
 @RestController
@@ -43,8 +41,8 @@ public class LukeInfoRest extends LukeApiRestSupport {
         return response(lukeInfoService.getExchangeBankInfo(bank, 2005L, 2016L), "bank", bank);
     }
 
-    @GetMapping("/prediction")
-    public ResponseEntity predictionByBank(@RequestParam String bank, @RequestParam Long month) {
-        return ResponseEntity.ok(lukePredictionService.predictionBankData(bank, 2018L, month));
+    @PostMapping("/prediction")
+    public ResponseEntity predictionByBank(@RequestBody PredictionRequest request) {
+        return ResponseEntity.ok(lukePredictionService.predictionBankData(request.getBank(), 2018L, request.getMonth()));
     }
 }
