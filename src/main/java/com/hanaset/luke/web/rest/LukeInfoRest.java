@@ -7,6 +7,8 @@ import com.hanaset.luke.web.rest.support.LukeApiRestSupport;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RequestMapping("/info")
 @RestController
 public class LukeInfoRest extends LukeApiRestSupport {
@@ -42,7 +44,7 @@ public class LukeInfoRest extends LukeApiRestSupport {
     }
 
     @PostMapping("/prediction")
-    public ResponseEntity predictionByBank(@RequestBody PredictionRequest request) {
+    public ResponseEntity predictionByBank(@RequestBody @Valid PredictionRequest request) {
         return ResponseEntity.ok(lukePredictionService.predictionBankData(request.getBank(), 2018L, request.getMonth()));
     }
 }

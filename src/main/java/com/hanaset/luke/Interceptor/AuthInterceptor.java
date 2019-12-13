@@ -25,7 +25,6 @@ public class AuthInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
         final String token = request.getHeader(HEADER_AUTH);
 
-
         if (token != null) {
             jwtService.validAndParsingToken(token);
             return true;

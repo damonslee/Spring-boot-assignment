@@ -58,21 +58,21 @@ public class LukeFileService {
         String fileName = file.getOriginalFilename();
 
         try {
-            Reader reader = new InputStreamReader(file.getInputStream());
-            CSVReader csvReader = new CSVReaderBuilder(reader).withSkipLines(1).build();
+            Reader reader = new InputStreamReader(file.getInputStream());  // IOException
+            CSVReader csvReader = new CSVReaderBuilder(reader).withSkipLines(1).build();  // CsvException
             List<String[]> list = csvReader.readAll();
 
-            for(String[] row : list) {
+            for (String[] row : list) {
 
-                for(int i = 2 ; i < row.length ; i++) {
+                for (int i = 2; i < row.length; i++) {
 
-                    if(row[i].equals(""))
+                    if (row[i].equals(""))
                         break;
 
                     bankHistoryEntityList.add(BankHistoryEntity.builder()
                             .year(Long.parseLong(row[0]))
                             .month(Long.parseLong(row[1]))
-                            .bankCode(bankInfos.get(i-2).getCode())
+                            .bankCode(bankInfos.get(i - 2).getCode())
                             .price(Long.parseLong(row[i].replaceAll("[^0-9]", "")))
                             .build());
                 }
@@ -80,11 +80,11 @@ public class LukeFileService {
 
             bankHistoryRepository.saveAll(bankHistoryEntityList);
 
-        }catch (IOException e) {
+        } catch (NumberFormatException e) {
             throw new LukeApiRestException(ErrorCode.FILE_UPLOAD_FAIL, e.getMessage());
-        }catch (CsvException e) {
+        } catch (CsvException e) {
             throw new LukeApiRestException(ErrorCode.FILE_UPLOAD_FAIL, e.getMessage());
-        }catch (NumberFormatException e) {
+        } catch (IOException e) {
             throw new LukeApiRestException(ErrorCode.FILE_UPLOAD_FAIL, e.getMessage());
         }
 

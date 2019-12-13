@@ -28,8 +28,10 @@ public class LukeAuthService {
 
     public JwtToken userSignUp(SignRequest request) {
 
-        validUserId(request.getId()); // 영어, 숫자 외에 단어를 체크
-        validPassword(request.getPassword()); // 영어, 숫자, 특수문자(!@#$%^&*)외에 단어를 체크
+        if (userRepository.findByUserId(request.getId()).orElse(null) != null) {
+            throw new LukeApiRestException(ErrorCode.SIGN_UP_FAILED, "중복되는 ID입니다.");
+        }
+
         JwtToken token = jwtService.create("user_id", request.getId(), "token");
 
         userRepository.save(UserEntity.builder()
@@ -38,41 +40,6 @@ public class LukeAuthService {
                 .build());
 
         return token;
-    }
-
-    public void validUserId(String userId) {
-
-        Pattern pattern = Pattern.compile("[^0-9a-zA-Z]");
-
-        if (pattern.matcher(userId).find() == true) {
-            throw new LukeApiRestException(ErrorCode.SIGN_UP_FAILED, "ID에는 숫자, 영소대문자만 가능합니다.");
-        }
-
-        if (userId.length() > 16) {
-            throw new LukeApiRestException(ErrorCode.SIGN_UP_FAILED, "ID는 최대 16자까지 가능합니다.");
-        }
-
-        if (userRepository.findByUserId(userId).orElse(null) != null) {
-            throw new LukeApiRestException(ErrorCode.SIGN_UP_FAILED, "중복되는 ID입니다.");
-        }
-    }
-
-    public void validPassword(String password) {
-
-        Pattern pattern = Pattern.compile("[^0-9a-zA-Z!@#$%^&*]");
-
-        if (pattern.matcher(password).find() == true) {
-//            log.error("Password에는 숫자, 영소대문자, 특수문자(!@#$%^&*)만 가능합니다.");
-            throw new LukeApiRestException(ErrorCode.SIGN_UP_FAILED, "Password에는 숫자, 영소대문자, 특수문자(!@#$%^&*)만 가능합니다.");
-        }
-
-        if (password.length() > 32) {
-//            log.error("Password는 최대 32자까지 가능합니다.");
-            throw new LukeApiRestException(ErrorCode.SIGN_UP_FAILED, "Password는 최대 32자까지 가능합니다.");
-        } else if (password.length() < 8) {
-//            log.error("Password는 최소 8자리입니다.");
-            throw new LukeApiRestException(ErrorCode.SIGN_UP_FAILED, "Password는 최소 8자리입니다.");
-        }
     }
 
     public JwtToken userSignIn(SignRequest request) {

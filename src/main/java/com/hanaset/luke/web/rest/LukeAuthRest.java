@@ -6,6 +6,8 @@ import com.hanaset.luke.web.rest.support.LukeApiRestSupport;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/auth")
 public class LukeAuthRest extends LukeApiRestSupport {
@@ -17,12 +19,12 @@ public class LukeAuthRest extends LukeApiRestSupport {
     }
 
     @PostMapping("/sign_up")
-    public ResponseEntity userSignUp(@RequestBody SignRequest request) {
+    public ResponseEntity userSignUp(@RequestBody @Valid SignRequest request) {
         return success(lukeAuthService.userSignUp(request));
     }
 
     @PostMapping("/sign_in")
-    public ResponseEntity userSignIn(@RequestBody SignRequest request) {
+    public ResponseEntity userSignIn(@RequestBody @Valid SignRequest request) {
         return success(lukeAuthService.userSignIn(request));
     }
 

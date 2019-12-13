@@ -34,29 +34,25 @@ public class LukePredictionService {
                 .getInstituteCode();
         List<BankHistoryEntity> entityList = bankHistoryRepository.findByBankCodeOrderByYearAscMonthAsc(bankCode);
 
-        if(month < 1 || month > 12) {
-            throw new LukeApiRestException(ErrorCode.REQUEST_ERROR, "요청하신 데이터는 비정상적인 요청입니다.");
-        }
-
         List<PredictionInfo> predictionInfos = Lists.newArrayList();
-        Long avgInc = 0L;
+        long avgInc = 0L;
         for (int i = 1; i < entityList.size(); i++) {
 
-            Long gap = entityList.get(i).getPrice() - entityList.get(i - 1).getPrice();
+            long gap = entityList.get(i).getPrice() - entityList.get(i - 1).getPrice();
             avgInc += gap;
         }
 
         avgInc /= entityList.size(); // 2005/1 ~ 2017/10 까지의 평균 증액
 
-        Long temp = entityList.get(0).getPrice();
+        Long totalData = entityList.get(0).getPrice();
         for (int i = 1; i < entityList.size(); i++) {
-            temp += avgInc;
+            totalData += avgInc;
             predictionInfos.add(
                     PredictionInfo.builder()
                             .year(entityList.get(i).getYear())
                             .month(entityList.get(i).getMonth())
-                            .gap(entityList.get(i).getPrice() - temp)
-                            .gapPercent(entityList.get(i).getPrice() / Double.valueOf(temp))
+                            .gap(entityList.get(i).getPrice() - totalData)
+                            .gapPercent(entityList.get(i).getPrice() / Double.valueOf(totalData))
                             .price(entityList.get(i).getPrice())
                             .build()
             );
@@ -64,20 +60,18 @@ public class LukePredictionService {
 
         List<PredictionInfo> monthPredicationInfos = predictionInfos.stream().filter(predictionInfo -> predictionInfo.getMonth().equals(month)).collect(Collectors.toList());
 
-        Double weight = 0.075; // 임의의 가중치
-        Double avgMouthGapPercent = 0D;
+        double weight = 0.075; // 임의의 가중치
+        double avgMouthGapPercent = 0D;
         for (int i = 0; i < monthPredicationInfos.size(); i++) {
             avgMouthGapPercent += monthPredicationInfos.get(i).getGapPercent() * (1 + (weight * i));
         }
 
         avgMouthGapPercent /= monthPredicationInfos.size();
 
-        Long period = (12 - (entityList.get(0).getMonth() - 1)) + ((((year - 1) - entityList.get(0).getYear())) * 12) + month;
+        long period = (12 - (entityList.get(0).getMonth() - 1)) + ((((year - 1) - entityList.get(0).getYear())) * 12) + month;
 
-        Long data = entityList.get(0).getPrice() + (avgInc * period);
-        Long result = Math.round(data * avgMouthGapPercent);
-        log.info("{}/{} : {}", year, month, result);
-
+        long data = entityList.get(0).getPrice() + (avgInc * period);
+        long result = Math.round(data * avgMouthGapPercent);
         return PredictionResponse.builder()
                 .bank(bankCode)
                 .year(year)
