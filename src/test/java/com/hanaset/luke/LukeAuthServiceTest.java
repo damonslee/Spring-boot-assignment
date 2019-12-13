@@ -30,31 +30,6 @@ public class LukeAuthServiceTest {
     private LukeAuthService lukeAuthService;
 
     @Test
-    public void authSignInValidUserIdTest() {
-
-//        lukeAuthService.validUserId("183523");
-//        lukeAuthService.validUserId("hanaset");
-//        lukeAuthService.validUserId("HANASET");
-//        lukeAuthService.validUserId("하나셋");
-//        lukeAuthService.validUserId("b183523!!!!");
-        lukeAuthService.validUserId("Bb183523");
-//        lukeAuthService.validUserId("Bb183523!!");
-//        lukeAuthService.validUserId("Bb183523하나");
-//        lukeAuthService.validUserId("1234567890123456789");
-    }
-
-    @Test
-    public void authSignInValidPasswordTest() {
-
-//        lukeAuthService.validPassword("123");
-//        lukeAuthService.validPassword("1235678!@#");
-//        lukeAuthService.validPassword("abcd5678!@#");
-//        lukeAuthService.validPassword("ABCD678!@#");
-//        lukeAuthService.validPassword("aBVD5678!@#~~ㄱ");
-        lukeAuthService.validPassword("1234567890123456789012345678901234");
-    }
-
-    @Test
     public void authSignUpTest() {
         System.out.println(lukeAuthService.userSignUp(SignRequest.builder().id("test").password("test1234").build()));
     }
