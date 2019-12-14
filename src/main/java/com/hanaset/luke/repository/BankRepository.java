@@ -1,6 +1,6 @@
 package com.hanaset.luke.repository;
 
-import com.hanaset.luke.entitiy.BankEntity;
+import com.hanaset.luke.entity.BankEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

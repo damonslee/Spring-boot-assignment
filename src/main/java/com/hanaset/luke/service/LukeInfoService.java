@@ -2,8 +2,8 @@ package com.hanaset.luke.service;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
-import com.hanaset.luke.entitiy.BankEntity;
-import com.hanaset.luke.entitiy.BankHistoryEntity;
+import com.hanaset.luke.entity.BankEntity;
+import com.hanaset.luke.entity.BankHistoryEntity;
 import com.hanaset.luke.model.BankInfo;
 import com.hanaset.luke.model.response.SupportAmount;
 import com.hanaset.luke.model.response.YearInfo;
@@ -30,10 +30,6 @@ public class LukeInfoService {
                            BankHistoryRepository bankHistoryRepository) {
         this.bankRepository = bankRepository;
         this.bankHistoryRepository = bankHistoryRepository;
-    }
-
-    private Sort sortByYear(){
-        return new Sort(Sort.Direction.ASC, "year");
     }
 
     public List<BankInfo> getBankInfoList() {

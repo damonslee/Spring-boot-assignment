@@ -1,6 +1,6 @@
 package com.hanaset.luke.Interceptor;
 
-import com.hanaset.luke.service.JwtService;
+import com.hanaset.luke.service.LukeAuthService;
 import com.hanaset.luke.web.rest.exception.ErrorCode;
 import com.hanaset.luke.web.rest.exception.LukeApiRestException;
 import lombok.extern.slf4j.Slf4j;
@@ -15,10 +15,10 @@ import javax.servlet.http.HttpServletResponse;
 public class AuthInterceptor implements HandlerInterceptor {
 
     private static final String HEADER_AUTH = "Authorization";
-    private final JwtService jwtService;
+    private final LukeAuthService lukeAuthService;
 
-    public AuthInterceptor(JwtService jwtService) {
-        this.jwtService = jwtService;
+    public AuthInterceptor(LukeAuthService lukeAuthService) {
+        this.lukeAuthService = lukeAuthService;
     }
 
     @Override
@@ -26,7 +26,7 @@ public class AuthInterceptor implements HandlerInterceptor {
         final String token = request.getHeader(HEADER_AUTH);
 
         if (token != null) {
-            jwtService.validAndParsingToken(token);
+            lukeAuthService.validAndParsingToken(token);
             return true;
         } else {
             throw new LukeApiRestException(ErrorCode.REQUEST_ERROR, "잘못된 요청입니다.");

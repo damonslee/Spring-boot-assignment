@@ -1,4 +1,4 @@
-package com.hanaset.luke.entitiy;
+package com.hanaset.luke.entity;
 
 import com.hanaset.luke.utils.ZonedDateTimeConverter;
 import lombok.AllArgsConstructor;
@@ -14,17 +14,15 @@ import java.time.ZonedDateTime;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "TB_USER")
-public class UserEntity {
+@Table(name = "TB_BANK")
+public class BankEntity {
 
     @Id
-    @Column(name = "user_id")
-    private String userId;
+    @Column(name = "institute_code")
+    private String instituteCode;
 
-    private String password;
-
-    @Column(name = "last_login")
-    private ZonedDateTime lastLogin;
+    @Column(name = "institute_name")
+    private String instituteName;
 
     @Column(name = "reg_dtime", updatable = false)
     @Convert(converter = ZonedDateTimeConverter.class)

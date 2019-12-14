@@ -1,12 +1,10 @@
-package com.hanaset.luke.entitiy;
+package com.hanaset.luke.entity;
 
 import com.hanaset.luke.utils.ZonedDateTimeConverter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.DynamicInsert;
-import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.time.ZonedDateTime;
