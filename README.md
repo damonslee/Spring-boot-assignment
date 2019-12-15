@@ -263,7 +263,7 @@ __SIGN_IN_FAILED__| 로그인 실패
 __AUTH_TOKEN_FAILED__| 올바르지 않은 토큰
 __REFRESH_TOKEN_ERROR__| 토큰 갱신 실패 
 __EXPIRED_TOKEN_ERROR__| 토큰 기간 만료
-__REQUEST_ERROR__| 요청 형태에 맞지 않
+__REQUEST_ERROR__| 요청 형태에 맞지 않음
 
 <br>
 
@@ -272,6 +272,7 @@ __REQUEST_ERROR__| 요청 형태에 맞지 않
 $git clone https://github.com/hanaset/Spring-boot-assignment.git
 
 # clone 후 프로젝트 내에 application-development.yml에 DB 설정
+# Intellij에서 Preferences -> Enable annotaion processing 체크
 
 $cd Spring-boot-assignment
 $gradle wrap
