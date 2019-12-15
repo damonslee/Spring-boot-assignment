@@ -13,12 +13,12 @@ cache:
     - '$HOME/.gradle'
 
 services:
-  - mysql
+  -
 
 before_install:
-  - mysql -e 'CREATE DATABASE taco'
+  - mysql -e 'CREATE DATABASE taco;'
   - mysql -e 'SHOW DATABASES;'
-  - mysql -e 'use taco'
+  - mysql -e 'use taco;'
 
 install: gradle wrapper --gradle-version 5.4.1
 
