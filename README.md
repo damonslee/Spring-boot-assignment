@@ -1,4 +1,5 @@
 # 주택금융 공급현황 분석 서비스
+[![Build Status](https://travis-ci.com/hanaset/Spring-boot-assignment.svg?branch=master)](https://travis-ci.com/hanaset/Spring-boot-assignment)
 [![Coverage Status](https://coveralls.io/repos/github/hanaset/Spring-boot-assignment/badge.svg?branch=master)](https://coveralls.io/github/hanaset/Spring-boot-assignment?branch=master)
 <br/>
 
