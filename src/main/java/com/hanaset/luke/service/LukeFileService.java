@@ -77,11 +77,11 @@ public class LukeFileService {
             bankHistoryRepository.saveAll(bankHistoryEntityList);
 
         } catch (NumberFormatException e) {
-            throw new LukeApiRestException(ErrorCode.FILE_UPLOAD_FAIL, e.getMessage());
+            throw new LukeApiRestException(ErrorCode.FILE_UPLOAD_FAILED, e.getMessage());
         } catch (CsvException e) {
-            throw new LukeApiRestException(ErrorCode.FILE_UPLOAD_FAIL, e.getMessage());
+            throw new LukeApiRestException(ErrorCode.FILE_UPLOAD_FAILED, e.getMessage());
         } catch (IOException e) {
-            throw new LukeApiRestException(ErrorCode.FILE_UPLOAD_FAIL, e.getMessage());
+            throw new LukeApiRestException(ErrorCode.FILE_UPLOAD_FAILED, e.getMessage());
         }
 
         return fileName + " 을 정상적으로 업로드 하였습니다.";

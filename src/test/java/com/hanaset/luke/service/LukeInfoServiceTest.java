@@ -28,7 +28,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 
 @RunWith(MockitoJUnitRunner.class)
-@ActiveProfiles("local")
+@ActiveProfiles("development")
 public class LukeInfoServiceTest {
 
     @InjectMocks

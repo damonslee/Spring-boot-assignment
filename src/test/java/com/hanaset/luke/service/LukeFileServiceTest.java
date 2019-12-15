@@ -27,7 +27,7 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.BDDMockito.given;
 
 @RunWith(MockitoJUnitRunner.class)
-@ActiveProfiles("local")
+@ActiveProfiles("development")
 @Transactional
 public class LukeFileServiceTest {
 
