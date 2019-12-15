@@ -1,3 +1,14 @@
+buildscript {
+    ext {
+        springBootVersion = '2.1.12.BUILD-SNAPSHOT'
+
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath 'org.kt3k.gradle.plugin:coveralls-gradle-plugin:2.8.2'
+    }
+}
+
 plugins {
     id 'org.springframework.boot' version '2.1.12.BUILD-SNAPSHOT'
     id 'io.spring.dependency-management' version '1.0.8.RELEASE'
@@ -38,17 +49,14 @@ dependencies {
     compile 'com.google.code.gson:gson:2.6.2' // gson
     compile group: 'com.opencsv', name: 'opencsv', version: '5.0' // open csv
     compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1' // JWT Token
+}
 
-    //JX java
-    implementation "io.reactivex.rxjava2:rxjava:2.2.0"
-    compile('org.apache.httpcomponents:httpclient:4.5.1')
-    compile "com.squareup.retrofit2:retrofit:2.4.0"
-    compile "com.squareup.retrofit2:converter-gson:2.4.0"
-    compile "com.squareup.retrofit2:converter-jackson:2.4.0"
-    compile "com.squareup.retrofit2:adapter-rxjava2:2.4.0"
-    compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.1.0'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.9.1'
-    compile("com.squareup.okhttp3:okhttp-urlconnection:3.9.0") {
-        exclude group: 'com.squareup.okhttp3', module: 'okhttp'
+apply plugin: 'com.github.kt3k.coveralls'
+apply plugin: 'jacoco'
+
+jacocoTestReport {
+    reports {
+        xml.enabled = true // coveralls plugin depends on xml format report
+        html.enabled = true
     }
 }

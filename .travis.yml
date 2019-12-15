@@ -17,3 +17,6 @@ install: gradle wrapper --gradle-version 5.4.1
 # clean 후 Build (Build시 자동으로 test 수행)
 script:
   - "./gradlew clean build"
+
+after_success:
+  - "./gradlew jacocoTestReport coveralls"
