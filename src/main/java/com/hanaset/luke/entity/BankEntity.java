@@ -18,7 +18,7 @@ import java.time.ZonedDateTime;
 public class BankEntity {
 
     @Id
-    @Column(name = "institute_code")
+    @Column(name = "institute_code", length = 10)
     private String instituteCode;
 
     @Column(name = "institute_name")

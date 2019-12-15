@@ -12,11 +12,10 @@ spring:
       naming:
         implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
         physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+      ddl-auto: update
 #  http:
 #    multipart:
 #      enabled: false
-  main:
-    allow-bean-definition-overriding: true
 
 
 

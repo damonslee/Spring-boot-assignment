@@ -18,9 +18,10 @@ import java.time.ZonedDateTime;
 public class UserEntity {
 
     @Id
-    @Column(name = "user_id")
+    @Column(name = "user_id", length = 16)
     private String userId;
 
+    @Column(length = 128)
     private String password;
 
     @Column(name = "last_login")
