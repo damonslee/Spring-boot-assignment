@@ -34,6 +34,9 @@ public class LukeFileServiceTest {
     @Mock
     private BankRepository bankRepository;
 
+    @Mock
+    private BankHistoryRepository bankHistoryRepository;
+
     @InjectMocks
     private LukeFileService lukeFileService;
 

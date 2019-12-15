@@ -56,22 +56,6 @@ public class LukeFileService {
             CSVReader csvReader = new CSVReaderBuilder(reader).build();  // CsvException
             List<String[]> list = csvReader.readAll();
 
-//            for (String[] row : list) {
-//
-//                for (int i = 2; i < row.length; i++) {
-//
-//                    if (row[i].equals(""))
-//                        break;
-//
-//                    bankHistoryEntityList.add(BankHistoryEntity.builder()
-//                            .year(Long.parseLong(row[0]))
-//                            .month(Long.parseLong(row[1]))
-//                            .bankCode(bankInfos.get(i - 2).getCode())
-//                            .price(Long.parseLong(row[i].replaceAll("[^0-9]", "")))
-//                            .build());
-//                }
-//            }
-
             List<BankInfo> bankInfos = uploadAndGetBankInfo(list.get(0));
 
             for (int i = 1 ; i < list.size() ; i++){

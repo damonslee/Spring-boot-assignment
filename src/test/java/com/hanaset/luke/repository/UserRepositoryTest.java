@@ -1,7 +1,6 @@
 package com.hanaset.luke.repository;
 
 import com.hanaset.luke.entity.BankEntity;
-import com.hanaset.luke.entity.BankHistoryEntity;
 import com.hanaset.luke.entity.UserEntity;
 import com.hanaset.luke.utils.SecurityUtil;
 import org.assertj.core.util.Lists;

@@ -18,6 +18,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.mockito.ArgumentMatchers.any;
@@ -111,18 +112,6 @@ public class LukeInfoRestTest {
 
         resultActions
                 .andExpect(status().isOk());
-    }
-
-    @Test
-    public void InfoRest_PredictionByBank_유효하지않은달_테스트() throws Exception {
-
-        given(lukePredictionService.predictionBankData(any(), any(), any())).willReturn(PredictionResponse.builder().build());
-        request.setMonth(13L);
-        final ResultActions resultActions = requestPredictionByBank(request);
-
-        resultActions
-                .andExpect(status().isBadRequest());
-
     }
 
     private ResultActions requestGetBankList() throws Exception {
