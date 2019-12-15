@@ -21,7 +21,7 @@ import static org.junit.Assert.assertThat;
 
 @RunWith(SpringRunner.class)
 @ActiveProfiles("development")
-@Transactional
+//@Transactional
 @DataJpaTest
 @AutoConfigureTestDatabase(replace= AutoConfigureTestDatabase.Replace.NONE)
 public class UserRepositoryTest {
