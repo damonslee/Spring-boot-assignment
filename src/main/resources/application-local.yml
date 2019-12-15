@@ -7,6 +7,7 @@ spring:
     password: bb2848
     url: jdbc:mysql://localhost:3306/Taco?characterEncoding=UTF-8&serverTimezone=Asia/Seoul&useSSL=false
     driver-class-name: com.mysql.cj.jdbc.Driver
+    data: classpath:init.sql
   jpa:
     hibernate:
       naming:
